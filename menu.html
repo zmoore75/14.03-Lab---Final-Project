@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menu — Downtown Donuts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-seasalt">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><span class="brand-title">Downtown Donuts</span></a>
+      <button class="nav-toggle" id="navToggle2" aria-expanded="false" aria-controls="mainNav2">☰</button>
+      <nav id="mainNav2" class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="comments.html">Comments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="menu-top">
+      <h1>Our Menu</h1>
+      <p class="lede">Browse our selection of classic and seasonal donuts & freshly brewed coffee.</p>
+
+      <div class="menu-actions">
+        <a class="btn" href="#" download>Download PDF Menu</a>
+        <div class="ordering small">
+          <a class="btn small" href="#">UberEats</a>
+          <a class="btn small" href="#">DoorDash</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-grid">
+
+      <div class="menu-category">
+        <h2>Signature Donuts</h2>
+        <ul class="menu-list">
+          <li><strong>Maple Glaze</strong> <span class="price">$2.50</span><p class="muted">Lorem ipsum</p></li>
+          <li><strong>Old Fashioned</strong> <span class="price">$2.00</span><p class="muted">Lorem ipsum</p></li>
+          <li><strong>Boston Cream</strong> <span class="price">$2.75</span><p class="muted">Lorem ipsum</p></li>
+        </ul>
+      </div>
+
+      <div class="menu-category">
+        <h2>Coffee</h2>
+        <ul class="menu-list">
+          <li><strong>Drip Coffee</strong> <span class="price">$2.00</span></li>
+          <li><strong>Latte</strong> <span class="price">$3.50</span></li>
+          <li><strong>Cold Brew</strong> <span class="price">$3.00</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-category">
+        <h2>Seasonal</h2>
+        <ul class="menu-list">
+          <li><strong>Pumpkin Spice</strong> <span class="price">$3.00</span></li>
+          <li><strong>Matcha</strong> <span class="price">$3.25</span></li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year2"></span> Downtown Donuts</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
