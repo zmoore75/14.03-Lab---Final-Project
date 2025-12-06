@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Downtown Donuts — Home</title>
+
+  <!-- Fonts: Italianno (for decorative title) and Montserrat (body + headings) -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-seasalt">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Downtown Donuts home">
+        <span class="brand-title">Downtown Donuts</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+        <span class="sr-only">Toggle navigation</span>
+        ☰
+      </button>
+
+      <nav id="mainNav" class="main-nav" role="navigation">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="comments.html">Comments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Downtown Donuts</h1>
+        <p class="hero-sub">Family-made donuts & small-batch coffee since 1992 — cozy, local, delicious.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="menu.html" title="View our menu">View Menu</a>
+          <a class="btn outline" href="#" title="Order on third-party platforms">Order: UberEats & DoorDash</a>
+        </div>
+      </div>
+
+      <figure class="hero-image" aria-hidden="true">
+        <!-- Placeholder decorative image -->
+        <svg width="420" height="220" viewBox="0 0 420 220" role="img" aria-label="Decorative donuts">
+          <rect width="420" height="220" fill="#F7F7F7"/>
+          <g fill="#F7C64A" stroke="#10291D" stroke-width="3">
+            <circle cx="80" cy="110" r="48"/>
+            <circle cx="200" cy="110" r="60"/>
+            <circle cx="320" cy="110" r="48"/>
+          </g>
+        </svg>
+      </figure>
+    </section>
+
+    <section class="cards">
+      <article class="card">
+        <h2>Our Menu</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, soluta.</p>
+        <a class="link" href="menu.html">Browse Menu →</a>
+      </article>
+
+      <article class="card">
+        <h2>Our Story</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, molestias.</p>
+        <a class="link" href="about.html">Read Our Story →</a>
+      </article>
+
+      <article class="card">
+        <h2>Customer Comments</h2>
+        <p>Share feedback with us—help us make better donuts.</p>
+        <a class="link" href="comments.html">Leave a Comment →</a>
+      </article>
+    </section>
+
+    <section class="newsletter">
+      <h3>Visit Us</h3>
+      <p>123 Main St, Downtown — open daily 7am–3pm. Call (555) 555-5555</p>
+      <div class="ordering">
+        <a class="btn small" href="#" title="Order with UberEats">UberEats</a>
+        <a class="btn small" href="#" title="Order with DoorDash">DoorDash</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Downtown Donuts • Made with care</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
