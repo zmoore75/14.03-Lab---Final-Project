@@ -1,39 +1,84 @@
-const express = require('express');
-const path = require('path');
-const { dbMiddleware} = require('./bin/db');
-
-
-const indexRouter = require('./routes/index');
-//add more handlers here
-
-const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(dbMiddleware);
-app.use('/', indexRouter);
-//add more routes here
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// small helper for year
+document.querySelectorAll('#year,#year2,#year3,#year4').forEach(el => {
+  if (el) el.textContent = new Date().getFullYear();
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// mobile nav toggles 
+document.querySelectorAll('.nav-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const nav = document.getElementById(btn.getAttribute('aria-controls'));
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (nav) nav.classList.toggle('open');
+  });
 });
 
-module.exports = app;
+(function () {
+  const form = document.getElementById('commentForm');
+  const list = document.getElementById('commentsList');
+  const clearBtn = document.getElementById('clearComments');
+  if (!form || !list) return;
+
+  function readComments() {
+    const raw = localStorage.getItem('dd_comments_v1');
+    return raw ? JSON.parse(raw) : [];
+  }
+
+  function saveComments(arr) {
+    localStorage.setItem('dd_comments_v1', JSON.stringify(arr));
+  }
+
+  function renderComments() {
+    const arr = readComments();
+    list.innerHTML = '';
+    if (!arr.length) {
+      list.innerHTML = '<p class="muted">No comments yet — be the first!</p>';
+      return;
+    }
+    arr.slice().reverse().forEach((c, idx) => {
+      const el = document.createElement('div');
+      el.className = 'comment';
+      el.innerHTML = `
+        <div class="meta"><strong>${escapeHtml(c.name)}</strong> • <span class="muted">${new Date(c.t).toLocaleString()}</span></div>
+        <div class="text">${escapeHtml(c.text)}</div>
+        <div style="margin-top:8px;text-align:right"><button data-index="${idx}" class="btn small outline delete">Delete</button></div>
+      `;
+      list.appendChild(el);
+    });
+
+    list.querySelectorAll('.delete').forEach(btn => btn.addEventListener('click', ev => {
+      const arr = readComments();
+      arr.pop();
+      saveComments(arr);
+      renderComments();
+    }));
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const name = document.getElementById('name').value.trim() || 'Anonymous';
+    const message = document.getElementById('message').value.trim();
+    if (!message) return;
+    const arr = readComments();
+    arr.push({ name, text: message, t: Date.now() });
+    saveComments(arr);
+    form.reset();
+    renderComments();
+  });
+
+  clearBtn && clearBtn.addEventListener('click', () => {
+    if (!confirm('Clear all local demo comments?')) return;
+    localStorage.removeItem('dd_comments_v1');
+    renderComments();
+  });
+
+  renderComments();
+})();
